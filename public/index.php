@@ -1,28 +1,34 @@
 <?php
 /**
- *Front Controller
+ * Front Controller
  *
- *PHP version 7.0
+ * PHP version 7.0
 */
 
 //echo 'Requested URL = "'.$_SERVER['QUERY_STRING'].'"';
+
+// Require the controller class
+require '../App/Controllers/Posts.php';
 
 /**
  * Routing
 */
 require '../Core/Router.php';
 $router = new Router();
-// echo get_class($router);
 
 //Add routes to the routing table
 $router->add('',['controller'=>'Home', 'action'=>'index']);
-$router->add('posts',['controller'=>'Posts', 'action'=>'index']);
-$router->add('posts/new',['controller'=>'Posts', 'action'=>'new']);
+$router->add('{controller}/{action}');
+$router->add('{controller}/{id:\d+}/{action}');
 
-// Display the routing table
-// echo '<pre>';
-// var_dump($router->getRoutes());
-// echo '<pre>';
+// Dispatch Route
+$router->dispatch($_SERVER['QUERY_STRING']);
+
+/*
+//Display the routing table
+echo '<pre>';
+echo htmlspecialchars(print_r($router->getRoutes()));
+echo '<pre>';
 
 // Match the requested route
 $url = $_SERVER['QUERY_STRING'];
@@ -36,6 +42,6 @@ else{
     // 404
     echo  "No route found for URL '$url'";
 }
-
+*/
 
 
