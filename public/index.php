@@ -1,25 +1,33 @@
 <?php
+
 /**
  * Front Controller
  *
  * PHP version 7.0
 */
 
-//echo 'Requested URL = "'.$_SERVER['QUERY_STRING'].'"';
-
-// Require the controller class
-require '../App/Controllers/Posts.php';
+/**
+ * Autoloader 
+ */
+spl_autoload_register(function($class){
+    $root = dirname(__DIR__); //  get parent directory
+    $file = $root.'/'.str_replace('\\','/', $class).'.php';
+    if(is_readable($file)){
+        require $root.'/'.str_replace('\\','/', $class) .'.php';
+    }
+});
 
 /**
  * Routing
 */
-require '../Core/Router.php';
-$router = new Router();
+
+$router = new Core\Router();
 
 //Add routes to the routing table
 $router->add('',['controller'=>'Home', 'action'=>'index']);
 $router->add('{controller}/{action}');
 $router->add('{controller}/{id:\d+}/{action}');
+$router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
 
 // Dispatch Route
 $router->dispatch($_SERVER['QUERY_STRING']);
