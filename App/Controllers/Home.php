@@ -26,13 +26,17 @@ class Home extends \Core\Controller {
 
     public  function indexAction(){
 
-        //echo "Welcome to the Home controller Index.";
-        View::render('Home/index.php', [
-                "name" => "theName",
+        // View::render('Home/index.php', [
+        //         "name" => "theName",
+        //         "colours" => ['red','green','blue']
+        //     ]
+        // );
+
+        View::renderTemplate('Home/index.html', [
+                "name" => "Admin",
                 "colours" => ['red','green','blue']
             ]
         );
-
     }
 
 }

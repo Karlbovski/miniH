@@ -4,10 +4,22 @@
  * Front Controller
  *
  * PHP version 7.0
+ *
+ * Template Engine : Twig
+ *
 */
 
 /**
+ * Composer 
  * Autoloader 
+ */
+require '../vendor/autoload.php';
+
+/**
+ * PHP Autoloader 
+ * This might be replaced with the Composer Autoloader 
+ * for custom classes.
+ * 
  */
 spl_autoload_register(function($class){
     $root = dirname(__DIR__); //  get parent directory
@@ -20,7 +32,6 @@ spl_autoload_register(function($class){
 /**
  * Routing
 */
-
 $router = new Core\Router();
 
 //Add routes to the routing table
