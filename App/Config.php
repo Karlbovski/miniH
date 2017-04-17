@@ -9,12 +9,12 @@ namespace App;
  * In production connect to the database using an user that 
  * only has the Privileges required by the session aKa NOT root!!
 */
- class Configuration
+ class Config
  {
     /**
      * MVC Framework Version
      */
-    const FRAMEWORK_VERSION = '0.0.0.1';
+    const FRAMEWORK_VERSION = '0.0.0.2';
 
     /**
      * App Version
@@ -38,5 +38,11 @@ namespace App;
     /**
      * Database Password
      */
-    const  DB_PASSWORD = "mysql";    
+    const  DB_PASSWORD = "mysql"; 
+
+    /**
+     * Show or hide errors messages on screen 
+     * @var boolean
+     */   
+     const SHOW_ERRORS = false;
  }

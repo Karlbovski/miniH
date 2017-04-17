@@ -60,9 +60,9 @@ Class Router
                 if(is_callable([$controller_obj, $action])){
                     $controller_obj->$action();
                     
-                }else{echo "Method $action (in controller $controller) not found!";}
-            }else{echo "Controller class $controller not found!";}
-        }else{echo "No route matched!";}
+                }else{throw new \Exception("Method $action (in controller $controller) not found!");}
+            }else{throw new \Exception("Controller class $controller not found!");}
+        }else{throw new \Exception("No route matched!", 404);}
     }
 
     protected function convertToStudlyCaps($string){

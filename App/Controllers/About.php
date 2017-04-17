@@ -27,7 +27,10 @@ class About extends \Core\Controller
     public function indexAction(){
         // echo "Hello from the index action in Posts controller";
         // echo "<p>Query string parameters:  <pre>". htmlspecialchars(print_r($_GET, true)) ."</pre></p>";
-        View::renderTemplate('About/index.html', [] );
+        View::renderTemplate('About/index.html', [
+            "frameworkVersion" => \App\Config::FRAMEWORK_VERSION
+                ] 
+            );
     }
 
 }
