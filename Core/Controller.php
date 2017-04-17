@@ -26,7 +26,7 @@ abstract class Controller  {
      }
 
      /**
-      * _call Magic Function
+      * __call Magic Function
       *
       */
       public function __call($name,$args)

@@ -44,24 +44,25 @@ Class Router
 
         $url = $this->removeQueryStringVariables($url);
 
-        if($this->match($url)){
-                $controller = $this->params['controller'];
-                $controller = $this->convertToStudlyCaps($controller);
-                //$controller = "App\Controllers\\$controller";
-                $controller = $this->getNamespace() . $controller;
+        if($this->match($url))
+        {
+            $controller = $this->params['controller'];
+            $controller = $this->convertToStudlyCaps($controller);
+            //$controller = "App\Controllers\\$controller";
+            $controller = $this->getNamespace() . $controller;
 
-                if(class_exists($controller)){
-                    $controller_obj = new $controller($this->params);
+            if(class_exists($controller)){
+                $controller_obj = new $controller($this->params);
 
-                    $action = $this->params['action'];
-                    $action = $this->convertToCamelCase($action);
+                $action = $this->params['action'];
+                $action = $this->convertToCamelCase($action);
 
-                    if(is_callable([$controller_obj, $action])){
-                        $controller_obj->$action();
-                        
-                    }else{echo "Method $action (in controller $controller) not found!";}
-                }else{echo "Controller class $controller not found!";}
-            }else{echo "No route matched!";}
+                if(is_callable([$controller_obj, $action])){
+                    $controller_obj->$action();
+                    
+                }else{echo "Method $action (in controller $controller) not found!";}
+            }else{echo "Controller class $controller not found!";}
+        }else{echo "No route matched!";}
     }
 
     protected function convertToStudlyCaps($string){
@@ -86,7 +87,7 @@ Class Router
     }
     
     /**
-     * Get the namespace forthhhe controller class. The namespace defined in the route paramters
+     * Get the namespace for the controller class. The namespace defined in the route parameters
      * is added if present. 
      *
      * @return string The URL

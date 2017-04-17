@@ -24,7 +24,7 @@ class Home extends \Core\Controller {
           
       }
 
-    public  function indexAction(){
+    public function indexAction(){
 
         // View::render('Home/index.php', [
         //         "name" => "theName",
@@ -33,9 +33,8 @@ class Home extends \Core\Controller {
         // );
 
         View::renderTemplate('Home/index.html', [
-                "name" => "Admin",
-                "colours" => ['red','green','blue']
-            ]
+                "name" => "Admin"
+                ]
         );
     }
 
