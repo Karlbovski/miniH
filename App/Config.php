@@ -28,7 +28,7 @@ namespace App;
     /**
      * Database Name
      */
-    const DB_NAME = "mvc";
+    const DB_NAME = "auth";
 
     /**
      * Database User
@@ -44,5 +44,5 @@ namespace App;
      * Show or hide errors messages on screen 
      * @var boolean
      */   
-     const SHOW_ERRORS = false;
+    const SHOW_ERRORS = true;
  }

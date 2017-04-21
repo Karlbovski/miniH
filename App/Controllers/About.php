@@ -4,9 +4,10 @@ namespace App\Controllers;
 
 use \Core\View;
 
-/*
- * Posts controller
- **/
+/**
+ * About controller
+ *
+ */
 
 class About extends \Core\Controller
 {

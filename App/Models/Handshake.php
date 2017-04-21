@@ -10,13 +10,12 @@ use PDO;
  */
 class Handshake extends \Core\Model 
 {
-    public static function checkConnection(){
-        try{
-            $db = static::getDB();
-
-        }
-        catch(PDOException $ex){
-            echo "Handshake failed! ".$ex.getMessage();
-        }
-    }
+    // public static function checkConnection(){
+    //     try{
+    //         $db = static::getDB();
+    //     }
+    //     catch(PDOException $ex){
+    //         echo "Handshake failed! ".$ex.getMessage();
+    //     }
+    // }
 }

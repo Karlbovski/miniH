@@ -6,7 +6,7 @@ use \Core\View;
 
 /**
  *  Home Controller
-*/
+ */
 
 class Home extends \Core\Controller {
 
