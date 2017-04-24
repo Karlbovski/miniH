@@ -11,11 +11,14 @@
 <body>
     <nav>
         <a href="/">Home</a> |
-        <a href="/about/index">About</a> |
-        <a href="/signup/new">Sign up</a>
+        <a href="/about/index">About</a>
     </nav>
 
-    {% block body %} {% endblock body %}
+    {% for message in flash_messages %}
+    <div>
+        {{ message }}
+    </div>
+    {% endfor %} {% block body %} {% endblock body %}
 
     <!--Add jQuery via CDN-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

@@ -6,12 +6,14 @@ Class Router
 {
     /**
      * Associative Array of routes (the routing table )
+     *
      * @var array
      */
     protected $routes = [];
 
     /**
      * Parameters from matched route
+     *
      * @var array
      */
     protected $params = [];
@@ -48,7 +50,6 @@ Class Router
         {
             $controller = $this->params['controller'];
             $controller = $this->convertToStudlyCaps($controller);
-            //$controller = "App\Controllers\\$controller";
             $controller = $this->getNamespace() . $controller;
 
             if(class_exists($controller)){

@@ -26,16 +26,15 @@ class Home extends \Core\Controller {
 
     public function indexAction(){
 
+        // Using Twig
+        View::renderTemplate('Home/index.html');
+
+        // Not using Twig
         // View::render('Home/index.php', [
         //         "name" => "theName",
         //         "colours" => ['red','green','blue']
         //     ]
-        // );
-
-        View::renderTemplate('Home/index.html', [
-                "name" => "Admin"
-                ]
-        );
+        // );        
     }
 
 }

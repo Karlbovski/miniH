@@ -1,9 +1,8 @@
 {% extends "base.html" %} {% block title %}Home{% endblock title %} {% block body %}
 
 <h1>Home</h1>
-<h4>Hello {{ name }}!</h4>
-<p>Welcome to the <strong>miniH</strong> PHP Framework!</p>
-<p>Twig Template Engine is in use.</p>
 
-
-{% endblock body %}
+{% if current_user %} Hello {{ current_user.name }}.
+<br>
+<a href="/logout"><small>Logout</small></a> {% else %}
+<a href="/signup/new">Sign-up</a> or <a href="/login">Sign-In</a> {% endif %} {% endblock body %}
