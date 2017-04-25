@@ -4,6 +4,7 @@ namespace App\Controllers;
 use \Core\View;
 use \App\Models\User;
 use \App\Auth;
+use \App\Flash;
 
 /**
  * Login Controller
@@ -31,10 +32,16 @@ class Login extends \Core\Controller
         if($user)
         {
             Auth::login($user);
+
+            Flash::addMessage('Login successful');
+
             $this->redirect(Auth::getReturnPage());
         }
         else
         {
+
+            Flash::addMessage('Login unsuccessful, please try again', Flash::WARNING);
+
             View::renderTemplate('Login/new.html', [
                 'email' => $_POST['email']
             ]);
@@ -48,6 +55,15 @@ class Login extends \Core\Controller
      */
     public function destroyAction(){
         Auth::logout();
+        $this->redirect('/login/show-logout-message');
+    }
+
+    /**
+     *  Show a "logged out" message. This is necessary since the Auth::logout() destroys the session,
+     *  so a new action needs to be called in order to use the session
+     */
+    public function showLogoutMessageAction(){
+        Flash::addMessage('Logout successful');
         $this->redirect('/');
     }
 }

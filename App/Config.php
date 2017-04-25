@@ -41,6 +41,12 @@ namespace App;
     const  DB_PASSWORD = "mysql"; 
 
     /**
+     * Secret key  for hashing
+     * 
+     */
+    const SECRET_KEY = "secret";
+
+    /**
      * Show or hide errors messages on screen 
      * @var boolean
      */   

@@ -1,5 +1,23 @@
+.alert {
+  border: 1px solid black;
+  padding: 6px;
+  margin: 1px;
+}
+
+.alert-info {
+  background-color: turquoise;
+}
+
+.alert-success {
+  background-color: greenyellow;
+}
+
+.alert-warning {
+  background-color: orangered;
+}
+
 a {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   text-decoration: none;
 }
 

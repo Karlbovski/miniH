@@ -71,7 +71,7 @@ abstract class Controller  {
 
           if(! Auth::getUser())
           {
-              Flash::addMessage("Please Log-in to access the Page.");
+              Flash::addMessage("Please Log-in to access the Page.", Flash::INFO);
               Auth::rememberRequestedPage();
               $this->redirect('/login');
           }
