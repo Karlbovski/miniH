@@ -41,8 +41,8 @@ namespace App;
     const  DB_PASSWORD = "mysql"; 
 
     /**
-     * Secret key  for hashing
-     * 
+     * Secret key for hashing
+     * In production use at least a 32 chars key.
      */
     const SECRET_KEY = "secret";
 

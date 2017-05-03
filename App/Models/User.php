@@ -1,20 +1,20 @@
 <?php
 
 namespace App\Models;
-
+use App\Token;
 use PDO;
 
 /**
- * Handshake class to test Database Connection
+ * User Model 
  *
  */
 class User extends \Core\Model 
 {
-    /*
+    /**
      * Form's errors
      * 
      * @var array Contains input's validation errors
-     **/
+     */
     public $form_errors = [];
 
     /**
@@ -37,19 +37,21 @@ class User extends \Core\Model
     public function save(){
 
         $this->validate();
-        if(empty($this->form_errors)){
-        $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
-        $sql = 'INSERT INTO users (name, email, password_hash) VALUES (:name, :email, :password_hash)';
+        if(empty($this->form_errors))
+        {
+            $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
-        $db = static::getDB();
-        $stmt = $db->prepare($sql);
+            $sql = 'INSERT INTO users (name, email, password_hash) VALUES (:name, :email, :password_hash)';
 
-        $stmt->bindValue(':name', $this->name,  PDO::PARAM_STR);
-        $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
-        $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
 
-        return $stmt->execute();
+            $stmt->bindValue(':name', $this->name,  PDO::PARAM_STR);
+            $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
+
+            return $stmt->execute();
         }
 
         return false;
@@ -141,7 +143,7 @@ class User extends \Core\Model
     }
 
     /**
-     * 
+     * Find a user  model by ID
      */
     public static function findByID($id)
     {
@@ -156,5 +158,32 @@ class User extends \Core\Model
         $stmt->execute();
 
         return $stmt->fetch();
+    }
+
+    /**
+     * Remember the login by inserting a new unique token into the remembered_logins table for  
+     * this user record
+     * 
+     * @return boolean True if the login was remembered successfully, false otherwise
+     */
+    public function rememberLogin(){
+        $token = new Token();
+        $hashed_token = $token->getHash();
+
+        $this->remember_token = $token->getValue();
+
+        $this->expiry_timestamp = time() + 60 * 60 * 24 * 30; // 30 days from now
+
+        $sql = 'INSERT INTO remembered_logins (token_hash, user_id, expires_at)
+                VALUES (:token_hash, :user_id, :expires_at)';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':token_hash', $hashed_token, PDO::PARAM_STR);
+        $stmt->bindValue(':user_id', $this->id, PDO::PARAM_INT);
+        $stmt->bindValue(':expires_at', date('Y-m-d H:i:s',$this->expiry_timestamp), PDO::PARAM_STR);
+
+        return $stmt->execute();
     }
 }

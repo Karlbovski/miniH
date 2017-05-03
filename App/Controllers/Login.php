@@ -29,9 +29,15 @@ class Login extends \Core\Controller
      */
     public function createAction(){
         $user = User::authenticate($_POST['email'], $_POST['password']);
+
+        $remember_me = isset($_POST['remember_me']);
+
         if($user)
         {
-            Auth::login($user);
+            Auth::login($user, $remember_me);
+
+            //Remember the login here
+            // ...
 
             Flash::addMessage('Login successful');
 
@@ -43,7 +49,8 @@ class Login extends \Core\Controller
             Flash::addMessage('Login unsuccessful, please try again', Flash::WARNING);
 
             View::renderTemplate('Login/new.html', [
-                'email' => $_POST['email']
+                'email' => $_POST['email'],
+                'remember_me' => $remember_me
             ]);
         }
     }
