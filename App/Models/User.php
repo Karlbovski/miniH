@@ -186,4 +186,46 @@ class User extends \Core\Model
 
         return $stmt->execute();
     }
+
+    /**
+     * Send Password Reset instruction to the current User
+     *
+     * @param string $email Email address
+     *
+     * @return void
+     */
+    public static function sendPasswordReset($email){
+        $user = static::findByEmail($email);
+        if($user){
+            if($user->startPasswordReset()){
+                	// Send Email here.....
+            }
+        }
+    }
+
+    /**
+     * Start password reset process
+     *
+     * @return void
+     */
+    protected function startPasswordReset(){
+
+        $token = new Token();
+        $hashed_token = $token->getHash();
+
+        $password_expiry_timestamp = time() + 60 * 60 * 4; // 2hrs from now  <--- WTF ?? if I multiply by 2 is not working !!?
+
+        $sql = 'UPDATE users SET password_reset_hash =:token_hash,
+                password_reset_expires_at =:expires_at
+                WHERE id =:id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':token_hash', $hashed_token, PDO::PARAM_STR);
+        $stmt->bindValue(':expires_at', date('Y-m-d H:i:s', $password_expiry_timestamp), PDO::PARAM_STR);
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
 }
