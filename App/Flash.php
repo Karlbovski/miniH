@@ -13,7 +13,6 @@ class Flash
     const INFO = 'info';
     const WARNING = 'warning';
 
-
     /**
      * Add a message
      * @param string Message content

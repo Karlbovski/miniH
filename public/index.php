@@ -19,10 +19,9 @@ require '../vendor/autoload.php';
  * PHP Autoloader 
  * This might be replaced with the Composer Autoloader 
  * for custom classes.
- * 
  */
 spl_autoload_register(function($class){
-    $root = dirname(__DIR__); //  get parent directory
+    $root = dirname(__DIR__); //  get parent directory. In this case the root of the project
     $file = $root.'/'.str_replace('\\','/', $class).'.php';
     if(is_readable($file)){
         require $root.'/'.str_replace('\\','/', $class) .'.php';
