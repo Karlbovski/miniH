@@ -15,10 +15,11 @@ class Flash
 
     /**
      * Add a message
+     *
      * @param string Message content
      */
     public static function addMessage($message, $type = 'success'){
-        if(! isset($_SESSION['flash_notifications'])){
+        if(!isset($_SESSION['flash_notifications'])){
             $_SESSION['flash_notifications'] = [];
         }
 

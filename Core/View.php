@@ -27,7 +27,7 @@ class View
     }
 
     /**
-     * Render a view template using Twig
+     * Render a view template built using Twig
      * 
      * @param string $template The template File
      * @param array $args Associative array of data to display in the view ( optional )
@@ -35,6 +35,19 @@ class View
      * @return void
      */
      public static function renderTemplate($template, $args = []){
+
+         echo static::getTemplate($template, $args);
+     }
+
+     /**
+     * Get the contents of a view template using Twig
+     * 
+     * @param string $template The template File
+     * @param array $args Associative array of data to display in the view ( optional )
+     *
+     * @return string
+     */
+     public static function getTemplate($template, $args = []){
 
          static $twig = null;
 
@@ -46,6 +59,6 @@ class View
              $twig->addGlobal('flash_messages', \App\Flash::getMessages());
          }
 
-         echo $twig->render($template, $args);
+         return $twig->render($template, $args);
      }
 }

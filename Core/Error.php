@@ -29,9 +29,10 @@ class Error
      */
     public static function exceptionHandler($exception)
     {
-        // Code 404(not found)or 500 (general error)
-        $code =  $exception->getCode();
-        if($code != 404){
+       
+        $code =  $exception->getCode();      // Code 404 (not found) or 500 (general error)
+        if($code != 404)
+        {
             $code = 500;
         }
         http_response_code($code);
@@ -55,12 +56,6 @@ class Error
             $message .= "Thrown in: '" . $exception->getFile()."' on line  " . $exception->getLine();
 
             error_log($message);
-            // if($code == 404){
-            //      echo "<h1>Page Not Found</h1>";
-            // }
-            // else{
-            //      echo "<h1>Ops, an Error occurred!</h1>";
-            // }           
             View::renderTemplate("$code.html");
         }
     }

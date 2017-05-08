@@ -2,6 +2,8 @@
 
 namespace App\Models;
 use App\Token;
+use App\Mail;
+use Core\View;
 use PDO;
 
 /**
@@ -192,13 +194,17 @@ class User extends \Core\Model
      *
      * @param string $email Email address
      *
-     * @return void
+     * @return boolean True if PHPMailer->send == true , otherwise False
      */
-    public static function sendPasswordReset($email){
+    public static function sendPasswordReset($email)
+    {
         $user = static::findByEmail($email);
-        if($user){
-            if($user->startPasswordReset()){
-                	// Send Email here.....
+
+        if($user)
+        {
+            if($user->startPasswordReset())
+            {
+                $user->sendPasswordResetEmail();
             }
         }
     }
@@ -212,6 +218,8 @@ class User extends \Core\Model
 
         $token = new Token();
         $hashed_token = $token->getHash();
+
+        $this->password_reset_token = $token->getValue();
 
         $password_expiry_timestamp = time() + 60 * 60 * 4; // 2hrs from now  <--- WTF ?? if I multiply by 2 is not working !!?
 
@@ -227,5 +235,28 @@ class User extends \Core\Model
         $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
 
         return $stmt->execute();
+    }
+
+    /**
+     * Send Password reset instructions in an email to thhe user
+     * 
+     * @return void
+     */
+    protected function sendPasswordResetEmail()
+    {
+        $url = 'http://'.$_SERVER['HTTP_HOST'].'/password/reset/'.$this->password_reset_token;
+
+        $text = View::getTemplate('Password/reset_email.txt', ['url' => $url]);
+        $html = View::getTemplate('Password/reset_email.html', ['url' => $url]);
+
+       //             $brandName, $this->email, $this->name, $subject, $text, $html
+       if(Mail::send("STL","dev@sixteenleft.com","Name","Subject", $text, $html))
+       {
+            return true;
+       }
+       else
+       {
+           return false;
+       }
     }
 }

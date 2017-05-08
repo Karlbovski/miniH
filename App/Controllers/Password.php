@@ -24,9 +24,15 @@ class Password extends \Core\Controller
      *
      * @return void
      */
-    public function requestResetAction(){
-        User::sendPasswordReset($_POST['email']);
-
-        View::renderTemplate('Password/email_sent.html');
+    public function requestResetAction()
+    {
+        if(User::sendPasswordReset($_POST['email']))
+        {
+            View::renderTemplate('Password/email_sent.html');
+        }
+        else
+        {
+            View::renderTemplate('Password/email_not_sent.html');
+        }
     }
 }

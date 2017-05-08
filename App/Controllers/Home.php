@@ -26,8 +26,6 @@ class Home extends \Core\Controller {
 
     public function indexAction(){
         
-        \App\Mail::send("STL","dev@sixteenleft.com","Subject","Name","Text","HTML"); // <-- TEST TO REMOVE
-        
         // Using Twig
         View::renderTemplate('Home/index.html');
 
