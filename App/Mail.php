@@ -46,8 +46,8 @@ class Mail
         //$mail->SMTPSecure = 'tls';                // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 25;                           // TCP port to connect to
            
-        $mail->setFrom("no-reply@sixteenleft.com", "Pass Recovery");        // Set who the message is to be sent FROM
-        $mail->addAddress($to, $username);                                  // Add a recipient. Name is optional
+        $mail->setFrom("no-reply@sixteenleft.com", $brandName);        // Set who the message is to be sent FROM
+        $mail->addAddress($to, $username);                           // Add a recipient. Name is optional
         $mail->addReplyTo('info@example.com', 'Information');
         //$mail->addCC('cc@example.com');
         //$mail->addBCC('bcc@example.com');

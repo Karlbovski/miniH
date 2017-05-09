@@ -14,12 +14,12 @@ namespace App;
     /**
      * MVC Framework Version
      */
-    const FRAMEWORK_VERSION = '0.0.0.2';
+    const FRAMEWORK_VERSION = '1.0.1.5';
 
     /**
      * App Version
      */
-    const APP_VERSION = '0.0.0.1';
+    const APP_VERSION = '0.0.0.0';
 
     /**
      * Database Host
@@ -51,4 +51,12 @@ namespace App;
      * @var boolean
      */   
     const SHOW_ERRORS = true;
+
+    /**
+     * Brand Name 
+     * The name of the website or website owner
+     *
+     * @var string
+     */
+    const BRAND_NAME = "BrandName";
  }

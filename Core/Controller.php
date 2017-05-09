@@ -12,7 +12,7 @@ use App\Flash;
 abstract class Controller  {
 
     /*
-     * Parameter from the  matched route.$_COOKIE
+     * Parameter from the matched route
      * @var array
      **/
     protected $route_params = [];
