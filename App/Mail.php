@@ -65,12 +65,12 @@ class Mail
         {
             echo 'Message could not be sent.';
             echo 'Mailer Error: ' . $mail->ErrorInfo;
-            return false;
+            //return false;
         }
         else
         {
             echo 'Message has been sent';
-            return true;
+            //return true;
         }
     }
 }
