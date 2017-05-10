@@ -64,24 +64,23 @@
 </ul>
 {% endif %}
 <form method="POST" action="/profile/update" id="formProfile">
-    <div>
+    <div class="form-group">
         <label for="inputName">Name</label>
-        <input id="inputName" name="name" placeholder="Name" value="{{ user.name }}" required />
+        <input class="form-control" id="inputName" name="name" placeholder="Name" value="{{ user.name }}" required />
     </div>
-    <br>
-    <div>
+    <div class="form-group">
         <label for="inputEmail">Email</label>
-        <input id="inputEmail" name="email" placeholder="Email Address" value="{{ user.email }}" required />
+        <input class="form-control" id="inputEmail" name="email" placeholder="Email Address" value="{{ user.email }}" required />
     </div>
-    <br>
-    <div>
+    <div class="form-group">
         <label for="inputPassword">Password</label>
-        <input type="password" id="inputPassword" name="password" placeholder="Password" aria-describedby="helpBlock" />
-        <span id="helpBlock">Leave blank to keep your current password</span>
+        <input class="form-control" type="password" id="inputPassword" name="password" placeholder="Password" aria-describedby="helpBlock"
+        />
+        <span id="helpBlock" class="help-block">Leave blank to keep your current password</span>
     </div>
     <br>
-    <button type="submit">Save</button>
-    <a href="/profile/show">Cancel</a>
+    <button class="btn btn-default" type="submit">Save</button>
+    <a class="btn btn-default" href="/profile/show">Cancel</a>
 </form>
 
 {% endblock body %}

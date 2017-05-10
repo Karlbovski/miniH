@@ -1,26 +1,7 @@
-.alert {
-  border: 1px solid black;
-  padding: 6px;
-  margin: 20px 1px 1px 1px;
-}
-
-.alert-info {
-  background-color: turquoise;
-}
-
-.alert-success {
-  background-color: greenyellow;
-}
-
-.alert-warning {
-  background-color: orangered;
+body {
+  margin-top: 3em;
 }
 
 a {
-  font-size: 1.1rem;
   text-decoration: none;
-}
-
-h1 {
-  color: slateblue;
 }

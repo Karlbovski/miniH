@@ -56,22 +56,22 @@
 </ul>
 {% endif %}
 <form method="POST" action="/signup/create" id="signupForm">
-    <div>
+    <div class="form-group">
         <label for="inputName">Name</label>
-        <input id="inputName" name="name" placeholder="Name" autofocus value="{{ user.name }}" required />
+        <input class="form-control" id="inputName" name="name" placeholder="Name" autofocus value="{{ user.name }}" required />
     </div>
-    <br>
-    <div>
+
+    <div class="form-group">
         <label for="inputEmail">Email</label>
-        <input id="inputEmail" name="email" placeholder="Email Address" value="{{ user.email }}" required />
+        <input class="form-control" id="inputEmail" name="email" placeholder="Email Address" value="{{ user.email }}" required />
     </div>
-    <br>
-    <div>
+
+    <div class="form-group">
         <label for="inputPassword">Password</label>
-        <input type="password" id="inputPassword" name="password" placeholder="Password" required />
+        <input class="form-control" id="inputPassword" type="password" name="password" placeholder="Password" required />
     </div>
-    <br>
-    <button type="submit">Signup</button>
+
+    <button class="btn btn-default" type="submit">Signup</button>
 </form>
 
 {% endblock body %}
