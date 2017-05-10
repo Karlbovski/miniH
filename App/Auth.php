@@ -3,6 +3,7 @@
 namespace App;
 use App\Models\User;
 use App\Models\RememberedLogin;
+
 /**
  * Authentication class
  *

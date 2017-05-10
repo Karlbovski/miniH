@@ -88,16 +88,19 @@ class User extends \Core\Model
         }
 
         // Password
-        if(strlen($this->password)<6){
-            $this->form_errors[]='Password must be at least 6 characters long';
-        }
+        if(isset($this->password))
+        {
+            if(strlen($this->password)<6){
+                $this->form_errors[]='Password must be at least 6 characters long';
+            }
 
-        if(preg_match('/.*[a-z]+.*/i', $this->password) == 0){
-            $this->form_errors[]= 'Password needs at least one letter';
-        }
+            if(preg_match('/.*[a-z]+.*/i', $this->password) == 0){
+                $this->form_errors[]= 'Password needs at least one letter';
+            }
 
-         if(preg_match('/.*\d+.*/i', $this->password) == 0){
-            $this->form_errors[]= 'Password needs at least one number';
+            if(preg_match('/.*\d+.*/i', $this->password) == 0){
+                $this->form_errors[]= 'Password needs at least one number';
+            }
         }
     }
 
@@ -369,5 +372,56 @@ class User extends \Core\Model
         $stmt->bindValue(':hashed_token', $hashed_token, PDO::PARAM_STR);
 
         $stmt->execute();        
+    }
+
+    /**
+     * Update user's profile
+     *
+     * @param array $data Data from the edit profile form
+     *
+     * @return boolean TRUE if the data was updated, FALSE otherwise
+     */
+    public function updateProfile($data){
+
+        $this->name = $data['name'];
+        $this->email = $data['email'];
+
+        // Set $this->password only if a new one has been provided
+        if($data['password']  != ''){
+            $this->password = $data['password'];
+        }
+
+        $this->validate();
+
+        if(empty($this->form_errors)){
+
+            $sql = 'UPDATE users
+                    SET name =:name,
+                        email=:email';
+                    
+                    // Add password if it´s set
+                    if(isset($this->password)){
+                     $sql .= ', password_hash=:password_hash';
+                    }
+
+                    $sql .= "\nWHERE id=:id";
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
+            $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+            // Bind the password if it´s set
+            if(isset($this->password)){
+                $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
+                $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
+            }
+
+            return $stmt->execute();
+        }
+
+        return false;
     }
 }

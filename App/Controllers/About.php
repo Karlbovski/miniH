@@ -30,8 +30,7 @@ class About extends \Core\Controller
         // echo "<p>Query string parameters:  <pre>". htmlspecialchars(print_r($_GET, true)) ."</pre></p>";
         View::renderTemplate('About/index.html', [
             "frameworkVersion" => \App\Config::FRAMEWORK_VERSION
-                ] 
-            );
+        ]);
     }
 
 }

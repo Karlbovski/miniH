@@ -3,6 +3,5 @@
 <h1>Home</h1>
 
 {% if current_user %} Hello {{ current_user.name }}.
-<br>
-<a href="/logout"><small>Logout</small></a> {% else %}
+<br> {% else %}
 <a href="/signup/new">Sign-up</a> or <a href="/login">Sign-In</a> {% endif %} {% endblock body %}
