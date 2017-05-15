@@ -88,16 +88,19 @@ Class Router
     }
     
     /**
-     * Get the namespace for the controller class. The namespace defined in the route parameters
-     * is added if present. 
+     * Get the namespace for the controller class. The namespace defined in the route parameters is added IF present. 
      *
      * @return string The URL
      */
-    protected function getNamespace(){
-        // default
-        $namespace = 'App\Controllers\\';
-        if(array_key_exists('namespace',$this->params)){
-            $namespace .= $this->params['namespace'] .'\\';
+    protected function getNamespace()
+    {
+        
+        $namespace = 'App\Controllers\\'; // default
+
+        // Check if a namespace has been passed as parameter to the route
+        if(array_key_exists('namespace', $this->params))
+        {
+            $namespace .= $this->params['namespace'] .'\\'; // Add the namespace in case
         }
 
         return $namespace;

@@ -5,8 +5,6 @@
  *
  * PHP version 7.0
  *
- * Template Engine : Twig
- *
 */
 
 /**
@@ -60,23 +58,23 @@ $router->add('signup/activate/{token:[\da-f]+}',['controller' => 'Signup', 'acti
 $router->dispatch($_SERVER['QUERY_STRING']);
 
 /*
-//Display the routing table
-echo '<pre>';
-echo htmlspecialchars(print_r($router->getRoutes()));
-echo '<pre>';
-
-// Match the requested route
-$url = $_SERVER['QUERY_STRING'];
-
-if($router->match($url)){
+    //Display the routing table
     echo '<pre>';
-    var_dump($router->getParams());
+    echo htmlspecialchars(print_r($router->getRoutes()));
     echo '<pre>';
-}
-else{
-    // 404
-    echo  "No route found for URL '$url'";
-}
+
+    // Match the requested route
+    $url = $_SERVER['QUERY_STRING'];
+
+    if($router->match($url)){
+        echo '<pre>';
+        var_dump($router->getParams());
+        echo '<pre>';
+    }
+    else{
+        // 404
+        echo  "No route found for URL '$url'";
+    }
 */
 
 
