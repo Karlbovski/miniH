@@ -3,9 +3,17 @@ html {
 }
 
 body {
+  position: relative;
   margin-top: 3em;
 }
 
 a {
   text-decoration: none;
+}
+
+.block-center {
+  position: absolute;
+  right: 50%;
+  left: 50%;
+  transform: translate(50%, 50%);
 }

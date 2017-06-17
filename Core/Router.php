@@ -10,7 +10,7 @@ Class Router
      * @var array
      */
     protected $routes = [];
-
+        
     /**
      * Parameters from matched route
      *

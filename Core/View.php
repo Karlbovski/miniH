@@ -3,8 +3,7 @@
 namespace Core;
 
 class View 
-{
-
+{    
     /**
      * Render a view file
      * 
@@ -53,10 +52,13 @@ class View
 
          if($twig===null){
              $loader = new \Twig_Loader_Filesystem(dirname(__DIR__).'/App/Views');
-             $twig = new \Twig_Environment($loader);
-            //  $twig->addGlobal('is_logged_in', \App\Auth::isLoggedIn());
+             $twig = new \Twig_Environment($loader);            
              $twig->addGlobal('current_user', \App\Auth::getUser());
              $twig->addGlobal('flash_messages', \App\Flash::getMessages());
+             $twig->addGlobal('brand_name', \App\Config::BRAND_NAME);
+             $twig->addGlobal('auth_sys_enabled', \App\Config::AUTH_SYS_ENABLED);
+             //$twig->addGlobal('is_logged_in', \App\Auth::isLoggedIn());
+
          }
 
          return $twig->render($template, $args);

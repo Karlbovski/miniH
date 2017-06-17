@@ -28,6 +28,14 @@ namespace App;
      * @var string
      */
     const BRAND_NAME = "BrandName";
+
+    /**
+     * Auth System
+     * Enable/Disable authentication system features
+     *
+     * @var boolean
+     */
+    const AUTH_SYS_ENABLED = true;
     
     /**
      * Database Host
