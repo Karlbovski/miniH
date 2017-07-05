@@ -1,4 +1,4 @@
-### miniH
+# miniH
 ## PHP light-weight MVC framework
 
 Temporary README 
