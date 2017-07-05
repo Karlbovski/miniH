@@ -1,5 +1,5 @@
 # miniH
-## PHP light-weight MVC framework
+### Light-weight MVC framework in PHP
 
 Temporary README 
 
@@ -8,4 +8,3 @@ Temporary README
 - Auth System
 - Twig templates
 - PHPMailer
-- 
