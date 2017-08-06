@@ -1,7 +1,7 @@
 # miniH Framework
 ## Light-weight MVC and VC frameworks in PHP
 
-Temporary README 
+*_Temporary README_* 
 
 ### Full Version ( MVC )
 
@@ -13,7 +13,7 @@ Temporary README
 
 ### Lite Version ( VC )
 
-- Views - Controllers only 
+- VC only
 - PHP 7.0
 - Twig templates
 - PHPMailer
@@ -25,5 +25,5 @@ Temporary README
 - Note that each version has its own `composer.json` and `composer.lock` files.
 - Enter the correct folder and **run** `composer.phar install` to install the relative dependencies packages.
 
-Since the project includes the `composer.lock` file.<br>
-Consider to run `composer.phar update` to update to the latest versions.
+Since the project includes the `composer.lock` files, consider to run `composer.phar update` to update to the latest packages's versions.
+
