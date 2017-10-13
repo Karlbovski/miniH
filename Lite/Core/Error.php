@@ -5,7 +5,7 @@ namespace  Core;
 class Error
 {
     /**
-     * Error Handler. Converts all errors to Exceptions.$_COOKIE
+     * Error Handler. Converts all errors to Exceptions.
      *
      * @param int $level Error Level
      * @param string $message Error Message
