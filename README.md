@@ -1,4 +1,5 @@
-# miniH Framework
+# miniH Framework 
+#### v1.0.3.1
 ## Light-weight MVC and VC frameworks in PHP
 
 *_Temporary README_* 

@@ -14,7 +14,7 @@ namespace App;
     /**
      * MVC Framework Version
      */
-    const FRAMEWORK_VERSION = '1.0.3.0 Lite';
+    const FRAMEWORK_VERSION = '1.0.3.1 Lite';
 
     /**
      * App Version
