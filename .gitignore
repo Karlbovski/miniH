@@ -1,3 +1,7 @@
 vendor
+
 .vscode/*
+
 md-styles\.css
+
+\.vscode/
