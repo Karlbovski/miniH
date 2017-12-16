@@ -7,7 +7,7 @@
 ### Full Version ( MVC )
 
 - Full MVC
-- PHP 7.1
+- PHP ^7.0
 - Complete Auth System
 - Twig templates
 - PHPMailer
@@ -15,7 +15,7 @@
 ### Lite Version ( VC )
 
 - VC only
-- PHP 7.1
+- PHP ^7.0
 - Twig templates
 - PHPMailer
 
