@@ -157,7 +157,32 @@ The dispatching step in this framework is going to create a **controller object*
 - Controller classes are named using **StudlyCaps** method, therefore their names are capitalized.
 - Action methods are named using **camelCase** syntax.
 
-Route ( e.g. /{controller}/{action} )
+
+### Example | The routing block inside the index.php
+<b>*Index.php*</b> <small>is our Front controller / Landing page </small>
+
+```PHP
+...
+/**
+ * Routing
+*/
+$router = new Core\Router();
+
+//Add routes to the routing table
+$router->add('',['controller'=>'Home', 'action'=>'index']);
+$router->add('{controller}/{action}'); //Base scheme
+$router->add('login',['controller'=>'Login', 'action' => 'new']);
+$router->add('logout',['controller'=>'Login', 'action' => 'destroy']);
+$router->add('password/reset/{token:[\da-f]+}',['controller' => 'Password', 'action' => 'reset']);
+$router->add('signup/activate/{token:[\da-f]+}',['controller' => 'Signup', 'action' => 'activate']);
+$router->add('{controller}/{id:\d+}/{action}');
+$router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
+
+// Dispatch Route
+$router->dispatch($_SERVER['QUERY_STRING']);
+...
+```
+
 
 
 
